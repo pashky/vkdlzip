@@ -35,7 +35,7 @@ function loadNext(audios, r) {
     var blob = r.zip.generate({type:"blob"});
     chrome.tabs.sendMessage(r.tabid, {done:true, linkid: r.linkid});
     
-    var time = time != '' ? new Date(parseInt(r.time) * 1000) : new Date();
+    var time = r.time ? new Date(parseInt(r.time) * 1000) : new Date();
     var artists = Object.keys(r.artists).slice(0, 10).join(',');
     var zipname = pad(time.getFullYear() % 100, 2) + '' +
           pad(time.getMonth() + 1, 2) + '' +
