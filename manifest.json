@@ -1,0 +1,33 @@
+{
+    "name": "vkdlzip",
+    "version": "0.0.1",
+    "manifest_version": 2,
+    "description": "vkdlzip",
+    "homepage_url": "http://vkdlzip",
+    "permissions": [
+        "cookies",
+        "http://*.vk.com/*",
+        "http://*.vk.me/*",
+        "https://*.vk.com/*",
+        "https://*.vk.me/*"
+    ],
+    "background": {
+        "scripts": [
+            "background.js",
+            "lib/jszip.js",
+            "lib/filesaver.js"
+        ]
+    },
+    "content_scripts": [
+        {
+            "matches": [
+                "http://vk.com/*",
+                "https://vk.com/*"
+            ],
+            "js": [
+                "inject.js",
+                "lib/jbone.js"
+            ]
+        }
+    ]
+}
