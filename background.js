@@ -36,7 +36,7 @@ function loadNext(audios, r) {
     chrome.tabs.sendMessage(r.tabid, {done:true, linkid: r.linkid});
     
     var time = r.time ? new Date(parseInt(r.time) * 1000) : new Date();
-    var artists = Object.keys(r.artists).slice(0, 10).join(',');
+    var artists = Object.keys(r.artists).slice(0, 4).join(',');
     var zipname = pad(time.getFullYear() % 100, 2) + '' +
           pad(time.getMonth() + 1, 2) + '' +
           pad(time.getDate(), 2) + 
