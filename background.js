@@ -1,23 +1,31 @@
 function extend(defaults, options) {
-    var extended = {};
-    var prop;
-    for (prop in defaults) {
-        if (Object.prototype.hasOwnProperty.call(defaults, prop)) {
-            extended[prop] = defaults[prop];
-        }
+  var extended = {};
+  var prop;
+  for (prop in defaults) {
+    if (Object.prototype.hasOwnProperty.call(defaults, prop)) {
+      extended[prop] = defaults[prop];
     }
-    for (prop in options) {
-        if (Object.prototype.hasOwnProperty.call(options, prop)) {
-            extended[prop] = options[prop];
-        }
+  }
+  for (prop in options) {
+    if (Object.prototype.hasOwnProperty.call(options, prop)) {
+      extended[prop] = options[prop];
     }
-    return extended;
+  }
+  return extended;
 };
 
 function pad(num, size) {
-    var s = num+"";
-    while (s.length < size) s = "0" + s;
-    return s;
+  var s = num+"";
+  while (s.length < size) s = "0" + s;
+  return s;
+}
+
+function clean(s) {
+  return s.replace("/", "");
+}
+
+function cleana(s) {
+  return clean(s).replace("E:\\music\\", "eM-");
 }
 
 function getBinary(file, then) {
@@ -45,7 +53,7 @@ function loadNext(audios, r) {
     saveAs(blob, zipname);
   } else {
     var a = audios[0];
-    var fname = pad(a.n, 2) + " " + a.a + " - " + a.t + ".mp3";
+    var fname = pad(a.n, 2) + " " + cleana(a.a) + " - " + clean(a.t) + ".mp3";
     console.log('Loading ' + fname + ' from ' + a.u);
     chrome.tabs.sendMessage(r.tabid, {current: r.audios.length - audios.length + 1, of: r.audios.length, linkid: r.linkid});
     if (!r.artists) {
